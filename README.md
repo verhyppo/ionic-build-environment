@@ -15,6 +15,8 @@ docker build -t 'ionic-build-environment' .
 > echo "node_modules" >> .dockerignore
 > ```
 ```
-docker run -v $(pwd):/app -w /app ionic-build-environment npm install
-docker run -v $(pwd):/app -w /app ionic-build-environment ionic cordova build android
+#run the container
+docker run -it -name=ionic -v $(pwd):/app -w /app ionic-build-environment /bin/bash
+docker exec -it ionic npm install
+docker exec -it ionic npm install ionic cordova build android
 ```
