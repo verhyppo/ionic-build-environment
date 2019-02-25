@@ -9,14 +9,10 @@ docker build -t 'ionic-build-environment' .
 
 ## How to build you project
 
-> add a .dockerignore file in your project excluding node_modules from the build.
-> e.g.
-> ```
-> echo "node_modules" >> .dockerignore
-> ```
 ```
-#run the container
-docker run -it -name=ionic -v $(pwd):/app -w /app ionic-build-environment /bin/bash
+#run the container is the quickest solution
+docker run -it --rm --name=ionic -v $(pwd):/app -w /app ionic-build-environment /bin/bash
 docker exec -it ionic npm install
-docker exec -it ionic npm install ionic cordova build android
+docker exec -it ionic npm rebuild node-sass 
+docker exec -it ionic ionic cordova build android
 ```
